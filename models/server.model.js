@@ -1,4 +1,5 @@
-const os = require('os');
+const os = require('os'),
+    rp = require('request-promise');
 
 class Server {
     constructor() {
@@ -13,6 +14,16 @@ class Server {
         this.freemem = os.freemem();
         this.cpus = os.cpus();
         this.networkInterfaces = os.networkInterfaces();
+    }
+
+    static getPip() {
+        return rp('https://node.thomas-schulte.de/ip')
+            .then(result => {
+                return result;
+            })
+            .catch(err => {
+                console.error(err);
+            });
     }
 
     get hostname() {

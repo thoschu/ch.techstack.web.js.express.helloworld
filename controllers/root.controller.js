@@ -3,11 +3,13 @@ const fs = require('fs'),
     path = require('path'),
     Server = require('../models/server.model');
 
-let rootAction = (request, response) => {
-    const server = new Server(),
+let rootAction = async (request, response) => {
+    const pip = await Server.getPip().then(result => {return result}).catch(err => console.error(err)),
+        server = new Server(),
         context = {
-        hostname: server.hostname
-    };
+            hostname: server.hostname,
+            pip
+        };
 
     fs.readFile(path.join(__dirname, '../views/index.html'), (err, data) => {
         if (err) {
