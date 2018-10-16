@@ -1,0 +1,32 @@
+{
+  "name": "io.server360.web.js.express.helloworld",
+  "version": "2.0.2",
+  "description": "Testproject for Kubernetes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thoschu/io.server360.web.js.express.helloworld.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "Node.js",
+    "Express.js",
+    "Kubernetes",
+    "Docker"
+  ],
+  "author": "Tom S. <thoschulte@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thoschu/io.server360.web.js.express.helloworld/issues"
+  },
+  "homepage": "https://github.com/thoschu/io.server360.web.js.express.helloworld#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "handlebars": "^4.0.12",
+    "ramda": "^0.25.0"
+  }
+}
