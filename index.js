@@ -22,11 +22,12 @@ if (cluster.isMaster) {
         console.log(`Worker with id: ${worker.process.pid} and code: ${code} and signal: ${signal} died!`);
     });
 } else if(cluster.isWorker) {
-    const app = express();
+    const app = express(),
+        processenvironment = R.prop('env', process);
 
     dotenv.config();
 
-    app.set('port', process.env.PORT);
+    app.set('port', processenvironment.PORT);
 
     app.use(morgan('combined', {
         immediate: true
@@ -48,7 +49,7 @@ if (cluster.isMaster) {
     router(app);
 
     app.listen(app.get('port'), () => {
-        console.log(`Worker ${process.env.workerId} with pid: ${process.pid} started ↴`);
+        console.log(`Worker ${processenvironment.workerId} with pid: ${process.pid} started ↴`);
         console.log(`Server listening on port ${app.get('port')}! Press Ctrl-C to terminate.`);
     });
 } else {
