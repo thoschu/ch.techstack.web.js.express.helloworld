@@ -4,10 +4,11 @@ const fs = require('fs'),
     Server = require('../models/server.model');
 
 let rootAction = async (request, response) => {
-    const pip = await Server.getPip().then(result => {return result}).catch(err => console.error(err)),
-        server = new Server();
+    const puplicip = await Server.getPip().then(result => {return result}).catch(err => console.error(err)),
+        server = new Server(),
+        pip = process.pid;
 
-    const view = fs.readFileSync(path.join(__dirname, '../views/index.html'), 'utf8');
+    console.log(pip);
 
     fs.readFile(path.join(__dirname, '../views/index.html'), (err, data) => {
         if (err) {
@@ -15,8 +16,9 @@ let rootAction = async (request, response) => {
         }
 
         response.set('Content-Type', 'text/html');
-        response.status(200).send(handlebars.compile(view.toString())({
+        response.status(200).send(handlebars.compile(data.toString())({
             hostname: server.hostname,
+            puplicip,
             pip
         }));
     });
