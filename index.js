@@ -34,11 +34,11 @@ if (cluster.isMaster) {
 
     app.use(express.static(path.join(__dirname, 'public'), {
         dotfiles: 'ignore',
-        etag: R.F(),
+        etag: false,
         extensions: ['js', 'css'],
         index: R.F(),
         maxAge: '1d',
-        redirect: R.F(),
+        redirect: false,
         setHeaders: (res, path/*, stat*/) => {
             console.log(path);
             res.set('x-timestamp', Date.now())
