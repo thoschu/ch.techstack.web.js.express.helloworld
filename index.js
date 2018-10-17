@@ -1,10 +1,10 @@
 const cluster = require('cluster'),
+    dotenv = require('dotenv'),
     express = require('express'),
     os = require('os'),
     path = require('path'),
     R = require('ramda'),
-    router = require('./router.js'),
-    port = 80;
+    router = require('./router.js');
 
 if (cluster.isMaster) {
     console.log(`Master ${process.pid} is running...`);
@@ -23,7 +23,9 @@ if (cluster.isMaster) {
 } else if(cluster.isWorker) {
     const app = express();
 
-    app.set('port', process.env.PORT || port);
+    dotenv.config();
+
+    app.set('port', process.env.PORT);
     app.use(express.static(path.join(__dirname, 'public'), {
         dotfiles: 'ignore',
         etag: R.F(),
@@ -32,6 +34,8 @@ if (cluster.isMaster) {
         maxAge: '1d',
         redirect: R.F(),
         setHeaders: (res, path, stat) => {
+            console.log(path);
+            console.log(stat);
             res.set('x-timestamp', Date.now())
         }
     }));
