@@ -6,7 +6,7 @@ const cluster = require('cluster'),
     path = require('path'),
     R = require('ramda'),
     router = require('./router.js'),
-    helper = require('./helpers/xpoweredby.middelware.js');
+    helper = require('./helpers/xpoweredby.middleware.js');
 
 if (cluster.isMaster) {
     console.log(`Master ${process.pid} is running...`);
