@@ -5,7 +5,8 @@ const cluster = require('cluster'),
     os = require('os'),
     path = require('path'),
     R = require('ramda'),
-    router = require('./router.js');
+    router = require('./router.js'),
+    helper = require('./helpers/xpoweredby.middelware.js');
 
 if (cluster.isMaster) {
     console.log(`Master ${process.pid} is running...`);
@@ -27,6 +28,8 @@ if (cluster.isMaster) {
 
     dotenv.config();
 
+    app.use(helper.xpoweredby);
+
     app.set('port', processenvironment.PORT);
 
     app.use(morgan('combined', {
@@ -42,7 +45,7 @@ if (cluster.isMaster) {
         redirect: false,
         setHeaders: (res, path/*, stat*/) => {
             console.log(path);
-            res.set('x-timestamp', Date.now())
+            res.set('X-Timestamp', Date.now())
         }
     }));
 
