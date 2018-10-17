@@ -7,7 +7,7 @@ let infoAction = (request, response) => {
     if (method && server[method]) {
         response.send(server[method]);
     } else {
-        response.redirect(301, '/info/hostname');
+        response.redirect(301, '/');
     }
 };
 

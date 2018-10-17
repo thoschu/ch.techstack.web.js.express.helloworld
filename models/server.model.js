@@ -16,7 +16,7 @@ class Server {
         this.networkInterfaces = os.networkInterfaces();
     }
 
-    static getPip() {
+    static getpublicip() {
         return rp('https://node.thomas-schulte.de/ip')
             .then(result => {
                 return result;

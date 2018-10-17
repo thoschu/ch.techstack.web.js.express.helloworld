@@ -4,7 +4,7 @@ const cluster = require('cluster'),
     path = require('path'),
     R = require('ramda'),
     router = require('./router.js'),
-    port = 3000;
+    port = 80;
 
 if (cluster.isMaster) {
     console.log(`Master ${process.pid} is running...`);
@@ -43,5 +43,5 @@ if (cluster.isMaster) {
         console.log(`Server listening on port ${app.get('port')}! Press Ctrl-C to terminate.`);
     });
 } else {
-    throw "CustomClusterError";
+    throw `Clustererror ${process.pid}`;
 }
