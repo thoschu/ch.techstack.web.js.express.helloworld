@@ -1,6 +1,7 @@
 const cluster = require('cluster'),
     dotenv = require('dotenv'),
     express = require('express'),
+    morgan = require('morgan'),
     os = require('os'),
     path = require('path'),
     R = require('ramda'),
@@ -26,6 +27,11 @@ if (cluster.isMaster) {
     dotenv.config();
 
     app.set('port', process.env.PORT);
+
+    app.use(morgan('combined', {
+        immediate: true
+    }));
+
     app.use(express.static(path.join(__dirname, 'public'), {
         dotfiles: 'ignore',
         etag: R.F(),
@@ -33,9 +39,8 @@ if (cluster.isMaster) {
         index: R.F(),
         maxAge: '1d',
         redirect: R.F(),
-        setHeaders: (res, path, stat) => {
+        setHeaders: (res, path/*, stat*/) => {
             console.log(path);
-            console.log(stat);
             res.set('x-timestamp', Date.now())
         }
     }));
