@@ -4,7 +4,7 @@
   "description": "Testproject for Kubernetes",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
+    "start": "PORT=3000 node . '0.0.0.0'",
     "dev": "PORT=3000 npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

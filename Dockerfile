@@ -1,4 +1,4 @@
-FROM node:onbuild
+FROM node:latest
 
 MAINTAINER <Tom S. | thoschulte@gmail.com>
 

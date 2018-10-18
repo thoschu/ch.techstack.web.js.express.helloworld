@@ -6,6 +6,7 @@ const fs = require('fs'),
 let rootAction = async (request, response) => {
     const server = new Server(),
         hostname = server.hostname,
+        networkInterfaces = server.networkInterfaces,
         puplicip = await Server.getpublicip().then(result => {return result}).catch(err => console.error(err)),
         pid = process.pid,
         workerId = process.env.workerId,
@@ -19,6 +20,7 @@ let rootAction = async (request, response) => {
         response.set('Content-Type', 'text/html');
         response.status(200).send(handlebars.compile(data.toString())({
             hostname,
+            networkInterfaces,
             puplicip,
             pid,
             workerId,

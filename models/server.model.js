@@ -14,6 +14,7 @@ class Server {
         this.freemem = os.freemem();
         this.cpus = os.cpus();
         this.networkInterfaces = os.networkInterfaces();
+        console.log(this.networkInterfaces);
     }
 
     static getpublicip() {
