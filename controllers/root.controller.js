@@ -2,11 +2,13 @@ const fs = require('fs'),
     handlebars = require('handlebars'),
     path = require('path'),
     stringifyObject = require('stringify-object'),
-    Server = require('../models/server.model');
+    Server = require('../models/server.model'),
+    server = new Server();
 
 let rootAction = async (request, response) => {
-    const server = new Server(),
-        hostname = server.hostname,
+    const hostname = server.hostname,
+        lip = server.lip,
+        ipv = server.ipv,
         networkInterfaces = stringifyObject(server.networkInterfaces, {
             indent: '  ',
             singleQuotes: false
@@ -24,6 +26,8 @@ let rootAction = async (request, response) => {
         response.set('Content-Type', 'text/html');
         response.status(200).send(handlebars.compile(data.toString())({
             hostname,
+            lip,
+            ipv,
             networkInterfaces,
             puplicip,
             pid,

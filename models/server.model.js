@@ -1,4 +1,5 @@
-const os = require('os'),
+const dns = require('dns'),
+    os = require('os'),
     rp = require('request-promise'),
     R = require('ramda');
 
@@ -16,7 +17,8 @@ class Server {
         this.cpus = os.cpus();
         this.networkInterfaces = os.networkInterfaces();
         this.networkInterfacesKeys = R.keys(this.networkInterfaces);
-        console.log(this.networkInterfaces);
+        this.lip = this.hostname;
+        this.ipv = this.hostname;
     }
 
     static getpublicip() {
@@ -111,6 +113,28 @@ class Server {
     }
     set networkInterfacesKeys(networkInterfacesKeys) {
         this._networkInterfacesKeys = networkInterfacesKeys;
+    }
+
+    get lip() {
+        return this._lip;
+    }
+    set lip(hostname) {
+        dns.lookup(hostname, (...params) => {
+            const [, add,] = params;
+
+            this._lip = add;
+        });
+    }
+
+    get ipv() {
+        return this._ipv;
+    }
+    set ipv(hostname) {
+        dns.lookup(hostname, (...params) => {
+            const [, , fam] = params;
+
+            this._ipv = fam;
+        });
     }
 }
 

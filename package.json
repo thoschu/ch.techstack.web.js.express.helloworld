@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node .",
     "prod": "npm start '0.0.0.0'",
-    "qa": "PORT=3333 npm start '127.0.0.1'",
+    "qa": "PORT=3030 npm start '127.0.0.1'",
     "dev": "PORT=3000 npm start 'localhost'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
