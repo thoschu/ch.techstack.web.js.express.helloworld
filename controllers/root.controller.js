@@ -1,12 +1,16 @@
 const fs = require('fs'),
     handlebars = require('handlebars'),
     path = require('path'),
+    stringifyObject = require('stringify-object'),
     Server = require('../models/server.model');
 
 let rootAction = async (request, response) => {
     const server = new Server(),
         hostname = server.hostname,
-        networkInterfaces = server.networkInterfaces,
+        networkInterfaces = stringifyObject(server.networkInterfaces, {
+            indent: '  ',
+            singleQuotes: false
+        }),
         puplicip = await Server.getpublicip().then(result => {return result}).catch(err => console.error(err)),
         pid = process.pid,
         workerId = process.env.workerId,

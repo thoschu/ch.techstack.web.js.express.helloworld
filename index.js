@@ -30,6 +30,7 @@ if (cluster.isMaster) {
 
     app.use(helper.xpoweredby);
 
+    app.set('trust proxy', 'loopback, linklocal, uniquelocal'); // specify a single subnet
     app.set('port', processenvironment.PORT);
 
     app.use(morgan('combined', {

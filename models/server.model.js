@@ -1,5 +1,6 @@
 const os = require('os'),
-    rp = require('request-promise');
+    rp = require('request-promise'),
+    R = require('ramda');
 
 class Server {
     constructor() {
@@ -14,6 +15,7 @@ class Server {
         this.freemem = os.freemem();
         this.cpus = os.cpus();
         this.networkInterfaces = os.networkInterfaces();
+        this.networkInterfacesKeys = R.keys(this.networkInterfaces);
         console.log(this.networkInterfaces);
     }
 
@@ -102,6 +104,13 @@ class Server {
     }
     set networkInterfaces(networkInterfaces) {
         this._networkInterfaces = networkInterfaces;
+    }
+
+    get networkInterfacesKeys() {
+        return this._networkInterfacesKeys;
+    }
+    set networkInterfacesKeys(networkInterfacesKeys) {
+        this._networkInterfacesKeys = networkInterfacesKeys;
     }
 }
 

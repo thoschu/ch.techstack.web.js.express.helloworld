@@ -1,5 +1,5 @@
 const xpoweredby = (req, res, next) => {
-    res.set('X-Powered-By', 'thoschu');
+    res.set('X-Powered-By', 'express.js');
     next();
 };
 
