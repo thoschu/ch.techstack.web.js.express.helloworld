@@ -6,7 +6,8 @@ const fs = require('fs'),
     server = new Server();
 
 let rootAction = async (request, response) => {
-    const hostname = server.hostname,
+    const proenv = process.env,
+        hostname = server.hostname,
         lip = server.lip,
         ipv = server.ipv,
         networkInterfaces = stringifyObject(server.networkInterfaces, {
@@ -15,8 +16,13 @@ let rootAction = async (request, response) => {
         }),
         puplicip = await Server.getpublicip().then(result => {return result}).catch(err => console.error(err)),
         pid = process.pid,
-        workerId = process.env.workerId,
-        numberofcpus = server.cpus.length;
+        workerId = proenv.workerId,
+        numberofcpus = server.cpus.length,
+        nodename = proenv.NODE_NAME,
+        podname = proenv.POD_NAME,
+        podnamespace = proenv.POD_NAMESPACE,
+        podip = proenv.POD_IP,
+        podserviceaccount = proenv.POD_SERVICE_ACCOUNT;
 
     fs.readFile(path.join(__dirname, '../views/index.html'), (err, data) => {
         if (err) {
@@ -32,7 +38,12 @@ let rootAction = async (request, response) => {
             puplicip,
             pid,
             workerId,
-            numberofcpus
+            numberofcpus,
+            nodename,
+            podname,
+            podnamespace,
+            podip,
+            podserviceaccount
         }));
     });
 };
