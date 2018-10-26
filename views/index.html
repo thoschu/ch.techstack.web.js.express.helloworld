@@ -53,12 +53,10 @@
                     <div class="panel-heading">hostname</div>
                     <div id="hostname" class="panel-body">{{hostname}}</div>
                 </div>
-
                 <div class="panel panel-default">
                     <div class="panel-heading">internal ip</div>
                     <div id="lipandipv" class="panel-body">{{lip}} - v{{ipv}}</div>
                 </div>
-
                 <div class="panel panel-default">
                     <div class="panel-heading">networkInterfaces</div>
                     <div id="networkInterfacesKey" class="panel-body">
@@ -73,22 +71,40 @@
                     <div class="panel-heading">id of the process / workerId # number of cpus</div>
                     <div id="pipandnumberofcpus" class="panel-body">{{pid}} / {{workerId}} # {{numberofcpus}}</div>
                 </div>
-
+                {{#if nodename}}
                 <div class="panel panel-default">
-                    {{#if nodename}}
-                    <div class="panel-heading">node name</div>
+                    <div class="panel-heading">name of the node</div>
                     <div id="nodename" class="panel-body">{{nodename}}</div>
-                    {{/if}}
                 </div>
-
+                {{/if}}
+                {{#if podname}}
                 <div class="panel panel-default">
-
+                    <div class="panel-heading">name of the pod</div>
+                    <div id="podname" class="panel-body">{{podname}}</div>
                 </div>
-
+                {{/if}}
+                {{#if podnamespace}}
+                <div class="panel panel-default">
+                    <div class="panel-heading">namespace of the pod</div>
+                    <div id="podnamespace" class="panel-body">{{podnamespace}}</div>
+                </div>
+                {{/if}}
+                {{#if podip}}
+                <div class="panel panel-default">
+                    <div class="panel-heading">ip of the pod</div>
+                    <div id="podip" class="panel-body">{{podip}}</div>
+                </div>
+                {{/if}}
+                {{#if podserviceaccount}}
+                <div class="panel panel-default">
+                    <div class="panel-heading">service-account of the pod</div>
+                    <div id="podserviceaccount" class="panel-body">{{podserviceaccount}}</div>
+                </div>
+                {{/if}}
             </div>
             <hr/>
             <div class="footer">
-                <p>2018 Tom S.,&nbsp;Visits:&nbsp;<span id="visits">&nbsp;</span>,&nbsp;&nbsp;<span id="clock">&nbsp;</span></p>
+                <p>2018 Tom S. - v{{version}},&nbsp;Visits:&nbsp;<span id="visits">&nbsp;</span>,&nbsp;&nbsp;<span id="clock">&nbsp;</span></p>
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

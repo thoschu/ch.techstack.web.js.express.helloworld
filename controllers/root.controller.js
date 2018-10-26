@@ -22,7 +22,8 @@ let rootAction = async (request, response) => {
         podname = proenv.POD_NAME,
         podnamespace = proenv.POD_NAMESPACE,
         podip = proenv.POD_IP,
-        podserviceaccount = proenv.POD_SERVICE_ACCOUNT;
+        podserviceaccount = proenv.POD_SERVICE_ACCOUNT,
+        appversion = require('../package.json').version;
 
     fs.readFile(path.join(__dirname, '../views/index.html'), (err, data) => {
         if (err) {
@@ -43,7 +44,8 @@ let rootAction = async (request, response) => {
             podname,
             podnamespace,
             podip,
-            podserviceaccount
+            podserviceaccount,
+            appversion
         }));
     });
 };
