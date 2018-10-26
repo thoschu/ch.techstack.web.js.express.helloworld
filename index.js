@@ -52,10 +52,12 @@ if (cluster.isMaster) {
 
     router(app);
 
+    console.log(process.env);
+
     app.listen(app.get('port'), process.argv[2] || null, () => {
         console.log(`Worker ${processenvironment.workerId} with pid: ${process.pid} started ↴`);
         console.log(`Server listening on host ${process.argv[2] ? process.argv[2] : '::'} port ${app.get('port')}! Press Ctrl-C to terminate.`);
     });
 } else {
-    throw `Clustererror ${process.pid}`;
+    throw `Cluster-Error: ${process.pid}`;
 }
