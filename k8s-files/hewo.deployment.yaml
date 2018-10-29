@@ -43,6 +43,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.serviceAccountName
+        - name: POD_NUMBER_OF_CONTAINER
+          valueFrom:
+            fieldRef:
+              fieldPath: "1"
       restartPolicy: Always
 status:
   availableReplicas: 3

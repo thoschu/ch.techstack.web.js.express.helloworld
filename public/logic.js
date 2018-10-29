@@ -1,10 +1,17 @@
+/** */
+
 function init() {
-    const timeDisplay = document.createTextNode("");
+    const date = moment().format("MMMM Do YYYY");
+    const timeDisplay = document.createTextNode(date);
     const windowLocation = window.location;
-    document.getElementById("clock").appendChild(timeDisplay);
+    document.getElementById("date").appendChild(timeDisplay);
     ["host", "pathname", "origin"].forEach(function (element) {
         document.getElementById(element).innerHTML = windowLocation[element];
     });
+}
+
+function tabText(text) {
+    document.title = text;
 }
 
 function updateVisit() {
@@ -46,5 +53,5 @@ function updateClock() {
     const currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
 
     // Update the time display
-    document.getElementById("clock").firstChild.nodeValue = currentTimeString;
+    tabText('Hello world... ' + currentTimeString);
 }

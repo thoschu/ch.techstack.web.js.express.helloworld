@@ -7,9 +7,11 @@
         <meta name="author" content="Tom S.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Hello world...</title>
-        <link rel="icon" type="image/png" href="favicon.png">
+        <link rel="icon" type="image/png" href="./favicon.png">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <script src="logic.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+        <script src="./logic.js"></script>
     </head>
     <body onload="init(); updateVisit(); updateClock(); setInterval('updateClock()', 1000)">
         <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -37,74 +39,115 @@
             <div class="jumbotron">
                 <h1>Hello</h1>
                 <p>Is it me you're looking for?</p>
-                <div class="panel panel-default">
-                    <div class="panel-heading">window.location.host</div>
-                    <div id="host" class="panel-body"></div>
+                <hr>
+                <div>
+                    <a class="btn btn-default btn-lg" title="Browser" data-toggle="collapse" href="#collapseBrowser" role="button" aria-expanded="false" aria-controls="collapseBrowser">
+                        Browser:&nbsp;&nbsp;&nbsp;<span class="badge"><i class="material-icons">desktop_windows</i></span>
+                    </a>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">window.location.pathname</div>
-                    <div id="pathname" class="panel-body"></div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">window.location.origin</div>
-                    <div id="origin" class="panel-body"></div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">hostname</div>
-                    <div id="hostname" class="panel-body">{{hostname}}</div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">internal ip</div>
-                    <div id="lipandipv" class="panel-body">{{lip}} - v{{ipv}}</div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">networkInterfaces</div>
-                    <div id="networkInterfacesKey" class="panel-body">
-                        <pre><code>{{networkInterfaces}}</code></pre>
+                <br>
+                <div class="collapse" id="collapseBrowser">
+                    <div class="card card-body">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">window.location.host</div>
+                            <div id="host" class="panel-body"></div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">window.location.pathname</div>
+                            <div id="pathname" class="panel-body"></div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">window.location.origin</div>
+                            <div id="origin" class="panel-body"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">puplic ip of the node</div>
-                    <div id="puplicip" class="panel-body">{{puplicip}}</div>
+                <hr>
+                <div>
+                    <a class="btn btn-default btn-lg" title="Host" data-toggle="collapse" href="#collapseHost" role="button" aria-expanded="true" aria-controls="collapseHost">
+                        Host:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge"><i class="material-icons">memory</i></span>
+                    </a>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">id of the process / workerId # number of cpus</div>
-                    <div id="pipandnumberofcpus" class="panel-body">{{pid}} / {{workerId}} # {{numberofcpus}}</div>
+                <br>
+                <div class="collapse in" id="collapseHost">
+                    <div class="card card-body">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">hostname</div>
+                            <div id="hostname" class="panel-body">{{hostname}}</div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">internal ip</div>
+                            <div id="lipandipv" class="panel-body">{{lip}} - v{{ipv}}</div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">networkInterfaces</div>
+                            <div id="networkInterfacesKey" class="panel-body">
+                                <pre><code>{{networkInterfaces}}</code></pre>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">puplic ip of the node</div>
+                            <div id="puplicip" class="panel-body">{{puplicip}}</div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">id of the process / workerId # number of cpus</div>
+                            <div id="pipandnumberofcpus" class="panel-body">{{pid}} / {{workerId}} # {{numberofcpus}}</div>
+                        </div>
+                    </div>
                 </div>
-                {{#if nodename}}
-                <div class="panel panel-default">
-                    <div class="panel-heading">name of the node</div>
-                    <div id="nodename" class="panel-body">{{nodename}}</div>
+                <hr>
+                {{#if hasmore}}
+                <div>
+                    <a class="btn btn-default btn-lg" title="Environment" data-toggle="collapse" href="#collapseMore" role="button" aria-expanded="false" aria-controls="collapseMost">
+                        More:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge"><i class="material-icons">more</i></span>
+                    </a>
                 </div>
-                {{/if}}
-                {{#if podname}}
-                <div class="panel panel-default">
-                    <div class="panel-heading">name of the pod</div>
-                    <div id="podname" class="panel-body">{{podname}}</div>
+                <br>
+                <div class="collapse" id="collapseMore">
+                    <div class="card card-body">
+                        {{#if nodename}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">name of the node</div>
+                            <div id="nodename" class="panel-body">{{nodename}}</div>
+                        </div>
+                        {{/if}}
+                        {{#if podname}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">name of the pod</div>
+                            <div id="podname" class="panel-body">{{podname}}</div>
+                        </div>
+                        {{/if}}
+                        {{#if podnamespace}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">namespace of the pod</div>
+                            <div id="podnamespace" class="panel-body">{{podnamespace}}</div>
+                        </div>
+                        {{/if}}
+                        {{#if podip}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">ip of the pod</div>
+                            <div id="podip" class="panel-body">{{podip}}</div>
+                        </div>
+                        {{/if}}
+                        {{#if podserviceaccount}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">service-account of the pod</div>
+                            <div id="podserviceaccount" class="panel-body">{{podserviceaccount}}</div>
+                        </div>
+                        {{/if}}
+                    </div>
                 </div>
-                {{/if}}
-                {{#if podnamespace}}
-                <div class="panel panel-default">
-                    <div class="panel-heading">namespace of the pod</div>
-                    <div id="podnamespace" class="panel-body">{{podnamespace}}</div>
-                </div>
-                {{/if}}
-                {{#if podip}}
-                <div class="panel panel-default">
-                    <div class="panel-heading">ip of the pod</div>
-                    <div id="podip" class="panel-body">{{podip}}</div>
-                </div>
-                {{/if}}
-                {{#if podserviceaccount}}
-                <div class="panel panel-default">
-                    <div class="panel-heading">service-account of the pod</div>
-                    <div id="podserviceaccount" class="panel-body">{{podserviceaccount}}</div>
+                {{else}}
+                <div>
+                    <a class="btn btn-default btn-lg" disabled="disabled" role="button" aria-expanded="false" title="Environment">
+                        More:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge"><i class="material-icons">more</i></span>
+                    </a>
                 </div>
                 {{/if}}
             </div>
-            <hr/>
             <div class="footer">
-                <p>2018 Tom S. - v{{appversion}},&nbsp;Visits:&nbsp;<span id="visits">&nbsp;</span>,&nbsp;&nbsp;<span id="clock">&nbsp;</span></p>
+                <p class="text-center">2018 Tom S. - v{{appversion}},&nbsp;Visits:&nbsp;<span id="visits">&nbsp;</span></p>
+                <p class="text-center"><span id="date"></span></p>
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
