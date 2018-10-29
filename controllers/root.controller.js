@@ -24,7 +24,8 @@ let rootAction = async (request, response) => {
         podnamespace = proenv.POD_NAMESPACE,
         podip = proenv.POD_IP,
         podserviceaccount = proenv.POD_SERVICE_ACCOUNT,
-        hasmore = R.not((R.isNil(nodename) || R.isNil(podname) || R.isNil(podnamespace) || R.isNil(podip) || R.isNil(podserviceaccount))),
+        podnumberofcontainer = proenv.POD_NUMBER_OF_CONTAINER,
+        hasmore = R.not((R.isNil(nodename) || R.isNil(podname) || R.isNil(podnamespace) || R.isNil(podip) || R.isNil(podserviceaccount) || R.isNil(podnumberofcontainer))),
         appversion = require('../package.json').version;
 
     fs.readFile(path.join(__dirname, '../views/index.html'), (err, data) => {
@@ -47,6 +48,7 @@ let rootAction = async (request, response) => {
             podnamespace,
             podip,
             podserviceaccount,
+            podnumberofcontainer,
             hasmore,
             appversion
         }));
