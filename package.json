@@ -10,7 +10,7 @@
     "dev": "PORT=3000 npm start '127.0.0.1'",
     "buddy": "buddy ./test",
     "test": "concurrently \"npm run dev\" \"npm run buddy && mocha --timeout 10000 && npm stop\"",
-    "stop": "killall node"
+    "stop": "pkill -f node"
   },
   "repository": {
     "type": "git",
