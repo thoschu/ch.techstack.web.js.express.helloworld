@@ -4,6 +4,7 @@ const assert = require('assert'),
     http = require('http'),
     R = require('ramda'),
     expect = chai.expect,
+    timeout = 5000,
     one = 1,
     two = 2,
     three = 3,
@@ -18,30 +19,36 @@ describe('Testtest', () => {
 });
 
 describe('Startpage', () => {
+
     let statuscode,
         headers,
         parsed = "";
 
     before(done => {
-        http.get({
-            host: 'localhost',
-            port: 3000,
-            path: '/'
-        }, response => {
-            let body = '';
 
-            statuscode = response.statusCode;
-            headers = response.headers;
+        const timeout = 5000;
 
-            response.on('data', chunk => {
-                body += chunk;
+        setTimeout(() => {
+            http.get({
+                host: 'localhost',
+                port: 3000,
+                path: '/'
+            }, response => {
+                let body = '';
+
+                statuscode = response.statusCode;
+                headers = response.headers;
+
+                response.on('data', chunk => {
+                    body += chunk;
+                });
+
+                response.on('end', () => {
+                    parsed = String(body);
+                    done();
+                });
             });
-
-            response.on('end', () => {
-                parsed = String(body);
-                done();
-            });
-        });
+        }, timeout);
     });
 
     describe('Statuscode', () => {
@@ -70,4 +77,4 @@ describe('Startpage', () => {
             expect(n).to.be.gte(R.negate(one));
         });
     });
-});
+}).timeout(timeout);
