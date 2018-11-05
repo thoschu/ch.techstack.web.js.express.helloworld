@@ -17,8 +17,3 @@ ClusterIP Service
 ```
 wget https://gist.githubusercontent.com/thoschu/9da578bbd719c6ca9c850fc108bb63cf/raw/c61d5f60693296c84ce2c0e428e6bbe44339ee11/ClusterIP-Service.yaml
 ```
----
-NodePort Service
-```
-wget https://gist.githubusercontent.com/thoschu/9da578bbd719c6ca9c850fc108bb63cf/raw/c61d5f60693296c84ce2c0e428e6bbe44339ee11/ClusterIP-Service.yaml
-```
