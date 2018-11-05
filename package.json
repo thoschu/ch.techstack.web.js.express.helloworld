@@ -1,6 +1,6 @@
 {
   "name": "io.server360.web.js.express.helloworld",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Testproject for Kubernetes",
   "main": "index.js",
   "scripts": {
