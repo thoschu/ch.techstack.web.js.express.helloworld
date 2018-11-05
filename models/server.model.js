@@ -4,6 +4,10 @@ const dns = require('dns'),
     R = require('ramda');
 
 class Server {
+    /**
+     * Represents a server.
+     * @constructor
+     */
     constructor() {
         this.hostname = os.hostname();
         this.type = os.type();
