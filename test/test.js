@@ -19,15 +19,11 @@ describe('Testtest', () => {
 });
 
 describe('Startpage', () => {
-
     let statuscode,
         headers,
         parsed = "";
 
     before(done => {
-
-        const timeout = 5000;
-
         setTimeout(() => {
             http.get({
                 host: 'localhost',
@@ -77,4 +73,4 @@ describe('Startpage', () => {
             expect(n).to.be.gte(R.negate(one));
         });
     });
-}).timeout(timeout);
+});
