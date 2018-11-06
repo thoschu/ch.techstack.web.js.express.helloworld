@@ -48,24 +48,34 @@ describe('Startpage', () => {
     });
 
     describe('Statuscode', () => {
-        it('should be 200', () => {
+        it('should be 200', (done) => {
             const ok = 200;
-            expect(statuscode).to.equal(ok);
-        });
-    });
 
-    describe('Headers', () => {
-        it('x-powered-by should be express.js', () => {
             try {
-                expect(R.prop('x-powered-by', headers)).to.equal('express.jss');
+                expect(statuscode).to.equal(ok);
+                done();
             } catch (e) {
                 console.log(e);
             }
         });
+    });
 
-        it('content-type', () => {
+    describe('Headers', () => {
+        it('x-powered-by should be express.js', (done) => {
+            try {
+                expect(R.prop('x-powered-by', headers)).to.equal('express.jjs');
+                console.log('####################');
+                done();
+            } catch (e) {
+                console.log(e);
+                process.exit();
+            }
+        });
+
+        it('content-type', (done) => {
             try {
                 expect(R.prop('content-type', headers)).to.equal('text/html; charset=utf-8');
+                done();
             } catch (e) {
                 console.log(e);
             }
@@ -73,21 +83,23 @@ describe('Startpage', () => {
     });
 
     describe('Markup', () => {
-        it('Title should be Hello world...', () => {
+        it('Title should be Hello world...', (done) => {
             try {
                 const $ = cheerio.load(parsed);
                 expect($('title').text()).to.equal('Hello world...');
+                done();
             } catch (e) {
                 console.log(e);
             }
         });
 
-        it('Title should be Hello world...', () => {
+        it('Title should be Hello world...', (done) => {
             try {
                 const $ = cheerio.load(parsed);
                 let code = $('code').text(),
                     n = code.search("address");
                 expect(n).to.be.gte(R.negate(one));
+                done();
             } catch (e) {
                 console.log(e);
             }
