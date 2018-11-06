@@ -3,17 +3,13 @@ const assert = require('assert'),
     cheerio = require('cheerio'),
     http = require('http'),
     R = require('ramda'),
+    exitprocess = require('../helpers/tests/exitprocess'),
     expect = chai.expect,
     timeout = 7000,
     one = 1,
     two = 2,
     three = 3,
     four = 4;
-
-const exitprocess = (e) => {
-    console.log(e);
-    process.exit();
-};
 
 describe('Testtest', () => {
     describe('#indexOf()', () => {
