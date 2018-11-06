@@ -60,7 +60,7 @@ describe('Startpage', () => {
         });
 
         it('content-type', () => {
-            expect(R.prop('content-type', headers)).to.equal('text/html; charset=utf-8');
+            expect(R.prop('content-type', headers)).to.equal('text/plain; charset=utf-8');
         });
     });
 
