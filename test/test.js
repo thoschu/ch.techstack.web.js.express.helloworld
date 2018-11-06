@@ -3,7 +3,6 @@ const assert = require('assert'),
     cheerio = require('cheerio'),
     http = require('http'),
     R = require('ramda'),
-    exitprocess = require('../helpers/tests/exitprocess'),
     expect = chai.expect,
     timeout = 7000,
     one = 1,
@@ -49,59 +48,33 @@ describe('Startpage', () => {
     });
 
     describe('Statuscode', () => {
-        it('should be 200', (done) => {
+        it('should be 200', () => {
             const ok = 200;
-
-            try {
-                expect(statuscode).to.equal(ok);
-                done();
-            } catch (e) {
-                exitprocess(e);
-            }
+            expect(statuscode).to.equal(ok);
         });
     });
 
     describe('Headers', () => {
-        it('x-powered-by should be express.js', (done) => {
-            try {
-                expect(R.prop('x-powered-by', headers)).to.equal('express.jss');
-                done();
-            } catch (e) {
-                exitprocess(e);
-            }
+        it('x-powered-by should be express.js', () => {
+            expect(R.prop('x-powered-by', headers)).to.equal('express.jss');
         });
 
-        it('content-type', (done) => {
-            try {
-                expect(R.prop('content-type', headers)).to.equal('text/html; charset=utf-8');
-                done();
-            } catch (e) {
-                exitprocess(e);
-            }
+        it('content-type', () => {
+            expect(R.prop('content-type', headers)).to.equal('text/html; charset=utf-8');
         });
     });
 
     describe('Markup', () => {
-        it('Title should be Hello world...', (done) => {
-            try {
-                const $ = cheerio.load(parsed);
-                expect($('title').text()).to.equal('Hello world...');
-                done();
-            } catch (e) {
-                exitprocess(e);
-            }
+        it('Title should be Hello world...', () => {
+            const $ = cheerio.load(parsed);
+            expect($('title').text()).to.equal('Hello world...');
         });
 
-        it('Title should be Hello world...', (done) => {
-            try {
-                const $ = cheerio.load(parsed);
-                let code = $('code').text(),
-                    n = code.search("address");
-                expect(n).to.be.gte(R.negate(one));
-                done();
-            } catch (e) {
-                exitprocess(e);
-            }
+        it('Title should be Hello world...', () => {
+            const $ = cheerio.load(parsed);
+            let code = $('code').text(),
+                n = code.search("address");
+            expect(n).to.be.gte(R.negate(one));
         });
     });
 });
