@@ -9,8 +9,9 @@
     "qa": " npm run dev",
     "dev": "PORT=3000 npm start '127.0.0.1'",
     "buddy": "buddy ./test",
-    "test": "concurrently \"npm run dev\" \"npm run buddy && mocha --timeout 10000 && npm stop\"",
-    "doc" : "jsdoc ./**/*.js",
+    "test": "concurrently \"npm run dev\" \"npm run buddy && npm run mocha && npm stop\"",
+    "mocha": "mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./out/test/results/file.xml --timeout 10000",
+    "doc": "jsdoc ./**/*.js",
     "stop": "pkill -f node"
   },
   "repository": {
@@ -46,6 +47,7 @@
     "cheerio": "^1.0.0-rc.2",
     "concurrently": "^4.0.1",
     "jsdoc": "^3.5.5",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "mocha-junit-reporter": "^1.18.0"
   }
 }
