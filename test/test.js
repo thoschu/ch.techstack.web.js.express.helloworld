@@ -64,7 +64,7 @@ describe('Startpage', () => {
     describe('Headers', () => {
         it('x-powered-by should be express.js', (done) => {
             try {
-                expect(R.prop('x-powered-by', headers)).to.equal('express.jss');
+                expect(R.prop('x-powered-by', headers)).to.equal('express.js');
                 done();
             } catch (e) {
                 exitprocess(e);
