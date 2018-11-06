@@ -58,6 +58,10 @@ describe('Startpage', () => {
         it('x-powered-by should be express.js', () => {
             expect(R.prop('x-powered-by', headers)).to.equal('express.js');
         });
+
+        it('content-type', () => {
+            expect(R.prop('content-type', headers)).to.equal('text/html; charset=utf-8');
+        });
     });
 
     describe('Markup', () => {
