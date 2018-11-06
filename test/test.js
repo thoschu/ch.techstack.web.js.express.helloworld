@@ -10,6 +10,11 @@ const assert = require('assert'),
     three = 3,
     four = 4;
 
+const exitprocess = (e) => {
+    console.log(e);
+    process.exit();
+};
+
 describe('Testtest', () => {
     describe('#indexOf()', () => {
         it('should return -1 when the value is not present', () => {
@@ -55,7 +60,7 @@ describe('Startpage', () => {
                 expect(statuscode).to.equal(ok);
                 done();
             } catch (e) {
-                console.log(e);
+                exitprocess(e);
             }
         });
     });
@@ -63,11 +68,10 @@ describe('Startpage', () => {
     describe('Headers', () => {
         it('x-powered-by should be express.js', (done) => {
             try {
-                expect(R.prop('x-powered-by', headers)).to.equal('express.js');
+                expect(R.prop('x-powered-by', headers)).to.equal('express.jss');
                 done();
             } catch (e) {
-                console.log(e);
-                process.exit();
+                exitprocess(e);
             }
         });
 
@@ -76,8 +80,7 @@ describe('Startpage', () => {
                 expect(R.prop('content-type', headers)).to.equal('text/html; charset=utf-8');
                 done();
             } catch (e) {
-                console.log(e);
-                process.exit();
+                exitprocess(e);
             }
         });
     });
@@ -89,8 +92,7 @@ describe('Startpage', () => {
                 expect($('title').text()).to.equal('Hello world...');
                 done();
             } catch (e) {
-                console.log(e);
-                process.exit();
+                exitprocess(e);
             }
         });
 
@@ -102,8 +104,7 @@ describe('Startpage', () => {
                 expect(n).to.be.gte(R.negate(one));
                 done();
             } catch (e) {
-                console.log(e);
-                process.exit();
+                exitprocess(e);
             }
         });
     });
