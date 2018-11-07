@@ -61,5 +61,6 @@ typings/
 .next
 
 .idea
-out
+out/doc
+out/test
 .nyc_output
