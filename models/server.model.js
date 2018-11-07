@@ -26,13 +26,13 @@ class Server {
     }
 
     static getpublicip() {
-        return rp('https://node.thomas-schulte.de/ip')
-            .then(result => {
+        return rp('https://node.thomas-schulte.de/ip').then(result => {
                 return result;
-            })
-            .catch(err => {
+            }
+        ).catch(err => {
                 console.error(err);
-            });
+            }
+        );
     }
 
     get hostname() {
@@ -125,7 +125,6 @@ class Server {
     set lip(hostname) {
         dns.lookup(hostname, (...params) => {
             const [, add,] = params;
-
             this._lip = add;
         });
     }
@@ -136,7 +135,6 @@ class Server {
     set ipv(hostname) {
         dns.lookup(hostname, (...params) => {
             const [, , fam] = params;
-
             this._ipv = fam;
         });
     }
