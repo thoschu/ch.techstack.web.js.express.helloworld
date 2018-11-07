@@ -12,7 +12,7 @@
     "test": "concurrently \"npm run dev\" \"npm stop\" \"npm run buddy && nyc --report-dir=out/test/coverage --reporter=cobertura --reporter=html --reporter=text mocha --timeout 10000\"",
     "test:qa": "concurrently \"npm run dev\" \"npm stop\" \"npm run buddy && npm run mochareport\"",
     "mochareport": "nyc --report-dir=out/test/coverage --reporter=cobertura --reporter=html --reporter=text mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./out/test/results/file.xml  --timeout 10000",
-    "doc": "jsdoc ./**/*.js",
+    "doc": "jsdoc -d ./out/doc ./**/*.js",
     "stop": "sleep 15 && pkill -f node"
   },
   "repository": {
