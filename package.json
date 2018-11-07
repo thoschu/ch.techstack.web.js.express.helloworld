@@ -9,11 +9,13 @@
     "qa": " npm run dev",
     "dev": "PORT=3000 npm start '127.0.0.1'",
     "buddy": "buddy ./test",
+    "jshint": "gulp jshint",
     "test": "concurrently \"npm run dev\" \"npm stop\" \"npm run buddy && nyc --report-dir=out/test/coverage --reporter=cobertura --reporter=html --reporter=text mocha --timeout 10000\"",
     "test:qa": "concurrently \"npm run dev\" \"npm stop\" \"npm run buddy && npm run mochareport\"",
     "mochareport": "nyc --report-dir=out/test/coverage --reporter=cobertura --reporter=html --reporter=text mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./out/test/results/file.xml  --timeout 10000",
     "doc": "jsdoc -d ./out/doc ./**/*.js",
-    "stop": "sleep 15 && pkill -f node"
+    "stop": "sleep 15 && pkill -f node",
+    "gulp": "gulp"
   },
   "repository": {
     "type": "git",
@@ -52,9 +54,19 @@
     "chai-match": "^1.1.1",
     "cheerio": "^1.0.0-rc.2",
     "concurrently": "^4.0.1",
+    "gulp": "^4.0.0",
+    "gulp-jshint": "^2.1.0",
+    "gulp-jshint-xml-file-reporter": "^0.5.1",
     "jsdoc": "^3.5.5",
+    "jshint": "^2.9.6",
     "mocha": "^5.2.0",
     "mocha-junit-reporter": "^1.18.0",
     "nyc": "^13.1.0"
+  },
+  "jshintConfig": {
+    "curly": true,
+    "eqeqeq": true,
+    "nocomma": false,
+    "esversion": 6
   }
 }

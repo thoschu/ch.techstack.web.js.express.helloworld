@@ -45,8 +45,8 @@ if (cluster.isMaster) {
         maxAge: '1d',
         redirect: false,
         setHeaders: (res, path/*, stat*/) => {
-            console.log(path);
-            res.set('X-Timestamp', Date.now())
+            // console.log(path);
+            res.set('X-Timestamp', Date.now());
         }
     }));
 

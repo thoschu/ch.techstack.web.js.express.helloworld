@@ -19,7 +19,7 @@ function updateVisit() {
     document.getElementById("visits").appendChild(visitDisplay);
 
     let counter = Cookies.get('counter');
-    if (counter == null) {
+    if (counter === null) {
         console.log(counter);
         counter = 1;
     } else {
@@ -47,7 +47,7 @@ function updateClock() {
     currentHours = (currentHours > 12) ? currentHours - 12 : currentHours;
 
     // Convert an hours component of "0" to "12"
-    currentHours = (currentHours == 0) ? 12 : currentHours;
+    currentHours = (currentHours === 0) ? 12 : currentHours;
 
     // Compose the string for display
     const currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
