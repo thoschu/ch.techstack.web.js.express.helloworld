@@ -6,10 +6,12 @@
   "scripts": {
     "start": "node .",
     "prod": "npm start '0.0.0.0'",
-    "qa": " npm run dev",
+    "staging": "npm run dev",
     "dev": "PORT=3000 npm start '127.0.0.1'",
     "buddy": "buddy ./test",
-    "test": "concurrently \"npm run dev\" \"npm stop\" \"npm run buddy && npm run mochareport\"",
+    "start:stop" : "concurrently \"npm run staging\" \"npm stop\"",
+    "test": "concurrently \"npm run start:stop\" \"npm run buddy && mocha --timeout 10000\"",
+    "test:qa": "concurrently \"npm run start:stop\" \"npm run buddy && npm run mochareport\"",
     "mochareport": "mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./out/test/results/file.xml  --timeout 10000",
     "doc": "jsdoc ./**/*.js",
     "stop": "sleep 15 && pkill -f node"
