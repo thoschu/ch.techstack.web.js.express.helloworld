@@ -4,3 +4,4 @@ node_modules
 test
 out
 .nyc_output
+jenkins.sh
