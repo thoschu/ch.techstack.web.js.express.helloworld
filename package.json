@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "qa": "npm start localhost PORT=3003",
+    "qa": "npm start localhost PORT=3001",
     "dev": "npm start 127.0.0.1 PORT=3000",
     "buddy": "buddy ./test",
     "jshint": "gulp jshint",
@@ -42,6 +42,7 @@
     "express": "^4.16.4",
     "handlebars": "^4.0.12",
     "morgan": "^1.9.1",
+    "nano": "^7.1.1",
     "ramda": "^0.25.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",

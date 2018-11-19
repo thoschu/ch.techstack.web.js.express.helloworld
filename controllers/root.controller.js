@@ -28,7 +28,7 @@ let rootAction = async (request, response) => {
         hasmore = R.not((R.isNil(nodename) || R.isNil(podname) || R.isNil(podnamespace) || R.isNil(podip) || R.isNil(podserviceaccount) || R.isNil(podnumberofcontainer))),
         appversion = require('../package.json').version;
 
-    fs.readFile(path.join(__dirname, '../views/index.html'), (err, data) => {
+    fs.readFile(path.join(__dirname, '../public/index.html'), (err, data) => {
         if (err) {
             response.status(500).send(err);
         }
