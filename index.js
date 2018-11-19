@@ -24,14 +24,21 @@ if (cluster.isMaster) {
     });
 } else if(cluster.isWorker) {
     const app = express(),
-        processenvironment = R.prop('env', process);
+        processenvironment = R.prop('env', process),
+        url = (address, port) => {
+            app.set('address', address);
+            app.set('port', port.replace(/\D/g, ''));
+        };
 
     dotenv.config();
 
     app.use(helper.xpoweredby);
 
-    //app.set('trust proxy', 'loopback, linklocal, uniquelocal');
-    app.set('port', processenvironment.PORT);
+    if(process.argv.length === 4) {
+        url(process.argv[2], process.argv[3]);
+    } else {
+        url(processenvironment.ADDRESS, processenvironment.PORT);
+    }
 
     app.use(morgan('combined', {
         immediate: true
@@ -52,9 +59,9 @@ if (cluster.isMaster) {
 
     router(app);
 
-    app.listen(app.get('port'), process.argv[2] || null, () => {
+    app.listen(app.get('port'), app.get('address') || null, () => {
         console.log(`Worker ${processenvironment.workerId} with pid: ${process.pid} started ↴`);
-        console.log(`Server listening on host ${process.argv[2] ? process.argv[2] : '::'} port ${app.get('port')}! Press Ctrl-C to terminate.`);
+        console.log(`Server listening on host ${app.get('address')} and port ${app.get('port')}! Press Ctrl-C to terminate.`);
     });
 } else {
     throw `Cluster-Error: ${process.pid}`;

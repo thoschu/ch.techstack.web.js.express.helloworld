@@ -30,7 +30,7 @@ describe('Startpage', () => {
         setTimeout(() => {
             http.get({
                 host: 'localhost',
-                port: 3000,
+                port: 3003,
                 path: '/'
             }, response => {
                 let body = '';
